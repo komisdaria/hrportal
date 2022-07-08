@@ -110,6 +110,7 @@ class EmployeesOption {
   ]
 
   employeesNewData: IDataFromFetch = [];
+  sliceData: IDataFromFetch = [];
 
   constructor() {
     makeAutoObservable(this)
@@ -121,7 +122,6 @@ class EmployeesOption {
 
   findEmployee(id: number) {
    const oneEm = this.employeesData.find(employee => employee.id === id)
-    console.log(oneEm);
     return oneEm
   }
 
@@ -130,7 +130,9 @@ class EmployeesOption {
   }
 
   removeEmployeeFetch(id: string) {
-    // this.employeesNewData = this.employeesNewData.filter(employee => employee !== id)
+    // this.employeesNewData = this.employeesNewData.filter(employee => employee.email !== id)
+    this.sliceData = this.sliceData.filter(employee => employee.email !== id)
+    
   }
 
   vocationEmployee(id: number) {
@@ -146,6 +148,12 @@ class EmployeesOption {
     .then(json => {
  this.employeesNewData = [...json.results] 
    })
+  }
+
+  curPerson(firstPersonCount: number, lastCountPerson: number) {
+   this.sliceData = this.employeesNewData.slice(firstPersonCount, lastCountPerson);
+    
+    return this.sliceData
   }
 }
 

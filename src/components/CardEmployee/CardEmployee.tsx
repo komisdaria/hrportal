@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
+
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import employeesOption, { IOneProfile } from "../../store/employeesOption";
@@ -17,25 +17,24 @@ const CardEmployee = observer((props: TProps) => {
   const { data, dataFromFetch } = props;
   const { id } = useParams();
 
-  const [person, setPerson] = useState<IOneProfile>();
+  const [ person, setPerson ] = useState<IOneProfile>();
 
-  const idEm = Number(id);
+
+   const idEm = Number(id);
   const fiiiii = employeesOption.findEmployee(idEm);
   const fii = toJS(fiiiii);
 
   useEffect(() => {
-    const findPerson = dataFromFetch.find((el) => el.phone === id);
-    //@ts-ignore
+    const findPerson = employeesOption.employeesNewData.find((el) => el.id.value === id);
+
     setPerson(findPerson);
   }, []);
-  //@ts-ignore
-  console.log(person);
+
 
   return (
     <div>
       {fii && (
         <Card style={{ width: "18rem", marginLeft: "25px", marginTop: "30px", marginBottom:"30px" }}>
-          <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
           <Card.Body>
             <Card.Title>{fii.name}</Card.Title>
             <Card.Text>
@@ -47,7 +46,7 @@ const CardEmployee = observer((props: TProps) => {
             <ListGroup.Item>Phone: {fii.phone}</ListGroup.Item>
             <ListGroup.Item>Mail: {fii.email}</ListGroup.Item>
             <ListGroup.Item>
-              Vocation status: {fii.vocation ? "yes" : "no"}
+              Vocation status: {fii.vocation ? "yes" : "works"}
             </ListGroup.Item>
           </ListGroup>
           <ToggleButton
@@ -93,7 +92,7 @@ const CardEmployee = observer((props: TProps) => {
               <ListGroup.Item>{`Lives in country ${person.location.country} ${' , city: '} ${person.location.city}`}
               </ListGroup.Item>
               <ListGroup.Item>
-                Vocation status: {person.location && "no" }
+                Vocation status: {person.location && "works" }
               </ListGroup.Item>
             </ListGroup>
             {/* <ToggleButton
@@ -108,14 +107,9 @@ const CardEmployee = observer((props: TProps) => {
               In vocation
             </ToggleButton>  */}
 
-            {/* <Button
-              variant="outline-danger"
-              onClick={() => employeesOption.removeEmployee(person.id.value)}
-            >
-              Delete
-            </Button> */}
+     
             <Card.Body>
-              <Card.Link href="/employees">back</Card.Link>
+              <Card.Link style={{ fontWeight: "400", fontSize: "16px" }} href="/employees">back</Card.Link>
             </Card.Body>
           </Card>
         </>

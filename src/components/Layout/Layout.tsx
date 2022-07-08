@@ -2,7 +2,7 @@ import React from 'react';
 import './_Layout.scss';
 import bem from 'bem-cn';
 import { NavLink, Outlet } from 'react-router-dom';
-import { Form, FormControl, Button} from 'react-bootstrap';
+import { Form, FormControl, Button, Nav } from 'react-bootstrap';
 import { Footer } from '../Footer/Footer';
 // import MainPage from '../MainPage/MainPage';
 
@@ -33,7 +33,11 @@ export function Layout() {
         />
         <Button variant="outline-success">Search</Button>
       </Form>
+
+      
     </header>
+    
+    <hr style={{ marginTop: "20px" }} />
     </div>
     <Outlet />
    
