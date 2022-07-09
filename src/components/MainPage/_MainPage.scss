@@ -1,6 +1,38 @@
 .main {
   &__content {
-    padding-bottom: 100px;
-    color: rgb(69, 69, 165);
+    position: relative;
+    background-color: #288dac;
   }
+
+  &__content-name {
+    position: absolute;
+    top: 80px;
+    left: 100px;
+    max-height: 55px;
+    bottom: 10%;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #fe9c06;
+    max-width: 100%;
+    background: #0a1b2a;
+
+padding: 8px;
+
+@media (max-width: 767.98px) { 
+  font-size: 20px;
+  top: 40px;
+background: none;
+left: 10%;
+color: #fe9c06;
+background:#288dac;
+ }
+  }
+
+  &__content-img {
+    width: 70%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+
+  } 
 }

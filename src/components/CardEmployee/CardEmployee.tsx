@@ -1,10 +1,10 @@
-
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import employeesOption, { IOneProfile } from "../../store/employeesOption";
 import { toJS } from "mobx";
 import { Card, ListGroup, Button, ToggleButton } from "react-bootstrap";
 import { observer } from "mobx-react";
+import './_CardEmployee.scss';
 
 type TProps = {
   data: undefined | IOneProfile[];
@@ -75,24 +75,24 @@ const CardEmployee = observer((props: TProps) => {
 
       {person && (
         <>
-          <Card style={{ width: "18rem", marginLeft: "25px", marginTop: "30px", marginBottom:"30px" }}>
+          <Card style={{ width: "22rem", marginLeft: "25px", marginTop: "30px", marginBottom:"30px" }}>
             <Card.Img variant="top" src={person.picture.large} />
-            <Card.Body>
+            <Card.Body style={{ backgroundColor: "#b8e5ab" }}>
               <Card.Title>
                 {person.name.first} {person.name.last}
               </Card.Title>
             </Card.Body>
             <ListGroup className="list-group-flush">
-              <ListGroup.Item>Phone: {person.cell}</ListGroup.Item>
-              <ListGroup.Item>Mail: {person.email}</ListGroup.Item>
+              <ListGroup.Item><span className="description-about">Phone:</span> {person.cell}</ListGroup.Item>
+              <ListGroup.Item><span className="description-about">Mail:</span> {person.email}</ListGroup.Item>
               <ListGroup.Item>
-                {person.gender === "female" ? "She" : "He"}
-                {" works since "} {person.registered.date.slice(0, 4)}
+                <span className="description-about">{person.gender === "female" ? "She" : "He"}
+                {" works since "}</span> {person.registered.date.slice(0, 4)}
               </ListGroup.Item>
-              <ListGroup.Item>{`Lives in country ${person.location.country} ${' , city: '} ${person.location.city}`}
+              <ListGroup.Item><span className="description-about">Lives in</span> {`${person.location.country}${', city: '} ${person.location.city}`}
               </ListGroup.Item>
               <ListGroup.Item>
-                Vocation status: {person.location && "works" }
+                <span className="description-about">Vocation status:</span> {person.location && "works" }
               </ListGroup.Item>
             </ListGroup>
             {/* <ToggleButton

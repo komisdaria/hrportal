@@ -20,19 +20,18 @@ function App() {
   const [data, setData] = useState([]);
   const [ loading, setLoading ] = useState<boolean>(false)
   const [ currentPage, setCurrentPage ] = useState<number>(1);
-  const [ personsPerPage ] = useState<number>(4);
+  const [ personsPerPage ] = useState<number>(3);
   // const [currentPerson, setCurPer] = useState();
 
   useEffect(() => {
     const getPersons = () => {
       setLoading(true);
        // @ts-ignore
-      setData(employeesOption.fetchEmpl());
+     employeesOption.fetchEmpl();
     }
     getPersons()
     setLoading(false);
   }, [])
-
 
 
   // useEffect((): void => {
@@ -52,8 +51,9 @@ function App() {
 
 const lastCountPerson: number = currentPage * personsPerPage;
 const firstPersonCount = lastCountPerson - personsPerPage;
+
 // const currentPerson = dataFromFetch.slice(firstPersonCount, lastCountPerson); // получаем текущую страницу 
-  // @ts-ignore
+
 // const currentPers = employeesOption.curPerson(firstPersonCount, lastCountPerson) // получаем текущую страницу 
 
 
@@ -61,9 +61,12 @@ const firstPersonCount = lastCountPerson - personsPerPage;
 
 useEffect(() => {
     employeesOption.curPerson(firstPersonCount, lastCountPerson)
+    toJS(employeesOption.sliceData)
 }, [firstPersonCount, lastCountPerson])
 
 const currentPerson = toJS(employeesOption.sliceData);
+console.log(currentPerson);
+
 
 const paginate = (pageNumber: number) => {
   setCurrentPage(pageNumber)

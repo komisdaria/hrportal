@@ -1,21 +1,22 @@
-import React from 'react';
-import './_Footer.scss';
-import bem from 'bem-cn';
-import { Link } from 'react-router-dom';
+import React from "react";
+import "./_Footer.scss";
+import bem from "bem-cn";
+import { Link, useHref } from "react-router-dom";
+import gitImg from "./img/github.png";
 
-const cn = bem('footer');
+const cn = bem("footer");
 
 export function Footer() {
-
-
   return (
-      <footer>
-    <div className={cn('info')}>
-      <p className={cn('description')}>
-      CRUD Project Daria Komissarova 2022
-      </p>
-      <br />
-      <Link to="https://github.com/komisdaria/">link github</Link>
+    <footer>
+      <div className={cn("info")}>
+        <p className={cn("description")}>CRUD Project Daria Komissarova 2022</p>
+        <div>
+          <img className={cn("logo-git")} src={gitImg} alt="logo git" />
+          <a target="_blank" href="https://github.com/komisdaria?tab=repositories"
+          className={cn('link-git')}
+          rel="noreferrer">link to github</a>
+        </div>
       </div>
     </footer>
   );

@@ -17,13 +17,17 @@ export function Layout() {
     <div>
     <div className={cn('wrapper')}>
     <h1 className={cn('header')}>GreenLand Company Career Portal</h1>
-    <header className={cn('toggles')}>
+    <div className={cn('toggles')}>
+    <header >
+
     <NavLink
     className={({isActive}) => isActive ? cn('active-link'): ''}
       to='/'>Main page</NavLink>
+
     <NavLink
     className={({isActive}) => isActive ? cn('active-link'): ''}
      to='/employees'>All employees</NavLink>
+    
       <Form className="d-flex">
         <FormControl
           type="search"
@@ -33,18 +37,12 @@ export function Layout() {
         />
         <Button variant="outline-success">Search</Button>
       </Form>
-
-      
+  
     </header>
-    
+    </div>
     <hr style={{ marginTop: "20px" }} />
     </div>
     <Outlet />
-   
-    <main className={cn('container')}>
-    main content here
- 
-    </main>
     </div>
     <Footer />
   

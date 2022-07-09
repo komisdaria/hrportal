@@ -29,8 +29,10 @@ const Employees = observer((props: TProps) => {
     personsPerPage,
     paginate,
   } = props;
-  
 
+useEffect(()=>{
+  employeesOption.sliceData
+}, [])
 
 
   const removePersone = (id: string) => {
@@ -45,7 +47,7 @@ const Employees = observer((props: TProps) => {
 
   return (
     <>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         {/* {employeesOption.employeesData.map((empl) => (
         <div key={empl.id} className="employees">
           <Card style={{ width: "20rem", marginLeft: "25px", marginTop: "30px", marginBottom:"30px" }}>
@@ -79,12 +81,12 @@ const Employees = observer((props: TProps) => {
           employeesOption.sliceData.map((person: IOneProfile) => (
               <div key={person.email} style={{display: "flex"}}>
                 <Card
-                  
                   style={{
                     width: "20rem",
                     marginLeft: "25px",
                     marginTop: "30px",
                     marginBottom: "30px",
+                    backgroundColor: "#b8e5ab",
                   }}
                 >
                   <Card.Body>

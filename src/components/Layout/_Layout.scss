@@ -2,19 +2,32 @@
 
   &__header {
     font-family: SBSansInterface, OpenSans, Helvetica Neue, Helvetica,Arial,sans-serif;
-    color: green;
+    color: #288dac;
     font-size: 28px;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding-top: 20px;
+    padding-left: 25px;
+    position: absolute;
+
+    @media (max-width: 767.98px) { 
+      font-size: 20px;
+     }
+
   }
 
   &__toggles {
     display: flex;
     justify-content: space-around;
-    margin-top: 25px;
+    margin-top: 85px;
     text-decoration: none;
+    position: relative;
+
+
   }
 
   &__active-link {
-    color:rgb(22, 107, 33);
+    color:#fe9c06;
     text-decoration: none;
   }
 
@@ -22,12 +35,25 @@
   display: flex;
   flex-direction: column;
   // min-height: 100%;
+  background-color: #26344a;
 }
 
 &__container {
   // flex: 1 0 auto;
   // padding-bottom: 100px;
 }
+
+@media (max-width: 769) and (max-width: 1023px) { 
+  &__toggles {
+    flex-direction: column;
+  }
+ }
+
+ @media screen and (max-width: 768) { 
+  &__toggles {
+    flex-direction: row
+    }
+ }
 
 }
 
@@ -38,11 +64,25 @@ a {
   // color:#878b90;
   text-decoration: none;
   font-weight: 600;
+padding-left: 15px;
 
+@media (max-width: 767.98px) { 
+  font-size: 20px;
+ }
  }
 
 
 
 a:hover {
   // color:rgb(22, 107, 33);
+}
+
+
+
+.btn-outline-success {
+  background-color: rgb(184, 229, 171);
+}
+
+.btn-outline-success:hover {
+  background-color: #fe9c06;
 }

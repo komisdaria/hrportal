@@ -4,6 +4,21 @@
     // margin-top: -100px;
     /*Минус Высота футера*/
     height: 100px;
-    background-color: #f0f3f6;
+    background-color: #0a1b2a;
+    color: rgb(184, 229, 171);
+    padding-left: 15px;
+    padding-top: 15px;
+  }
+
+  &__logo-git {
+    height: 30px;
+    width: 30px;
+    background-color:rgb(184, 229, 171);
+    border-radius: 30px;
+  }
+
+  &__link-git {
+    font-size: 18px;
+    color: #fe9c06;
   }
 }
