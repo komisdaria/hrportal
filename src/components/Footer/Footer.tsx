@@ -8,7 +8,7 @@ const cn = bem("footer");
 
 export function Footer() {
   return (
-    <footer>
+    <footer  className="fixed-bottom">
       <div className={cn("info")}>
         <p className={cn("description")}>CRUD Project Daria Komissarova 2022</p>
         <div>

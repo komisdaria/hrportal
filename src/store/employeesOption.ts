@@ -56,6 +56,7 @@ export interface IOneProfile {
     thumbnail: string;
     },
     nat: string,
+    vocation?: boolean,
 }
 
 export interface INewEmployee {
@@ -148,6 +149,7 @@ class EmployeesOption {
     .then(json => {
  this.employeesNewData = [...json.results] 
    })
+   this.employeesNewData = this.employeesNewData.filter((el) => el.id.value !== null )
   }
 
   curPerson(firstPersonCount: number, lastCountPerson: number) {
@@ -155,6 +157,11 @@ class EmployeesOption {
     
     return this.sliceData
   }
+
+  vocationFromFetch(em: string) {
+    this.sliceData =  this.sliceData.map((empl) => empl.email === em ? {...empl, vocation: true }: {...empl, vocation: false }) 
+  }
+
 }
 
 export default new EmployeesOption()

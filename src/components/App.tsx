@@ -59,13 +59,13 @@ const firstPersonCount = lastCountPerson - personsPerPage;
 
 
 
-useEffect(() => {
-    employeesOption.curPerson(firstPersonCount, lastCountPerson)
-    toJS(employeesOption.sliceData)
-}, [firstPersonCount, lastCountPerson])
+// useEffect(() => {
+//     employeesOption.curPerson(firstPersonCount, lastCountPerson)
+//     toJS(employeesOption.sliceData)
+// }, [firstPersonCount, lastCountPerson])
 
+employeesOption.curPerson(firstPersonCount, lastCountPerson)
 const currentPerson = toJS(employeesOption.sliceData);
-console.log(currentPerson);
 
 
 const paginate = (pageNumber: number) => {

@@ -47,7 +47,7 @@ useEffect(()=>{
 
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
         {/* {employeesOption.employeesData.map((empl) => (
         <div key={empl.id} className="employees">
           <Card style={{ width: "20rem", marginLeft: "25px", marginTop: "30px", marginBottom:"30px" }}>
@@ -89,7 +89,8 @@ useEffect(()=>{
                     backgroundColor: "#b8e5ab",
                   }}
                 >
-                  <Card.Body>
+                  <Card.Body style={{display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+                    <div>
                     <Card.Title>
                       {person.name.first} {person.name.last}
                     </Card.Title>
@@ -102,13 +103,17 @@ useEffect(()=>{
                     <Card.Text>
                       You can choose if {person.name.first} has vocation on personal info, link about
                     </Card.Text>
+                    </div>
+                   
+                    <div>
                     <NavLink 
                     className="link-about"
                     to={`/employees/${person.id.value}`}>
                       More info about {person.name.first} {person.name.last}
                     </NavLink>
-
+</div>
                     <br />
+                    <div>
                     <Button
                       variant="outline-danger"
                       style={{ marginTop: "15px" }}
@@ -118,6 +123,7 @@ useEffect(()=>{
                     >
                       Delete if {person.gender === "female" ? "she" : "he"} fired
                     </Button>
+                    </div>
                   </Card.Body>
                 </Card>
                 <br />

@@ -4,11 +4,12 @@ import employeesOption, { IOneProfile } from "../../store/employeesOption";
 import { toJS } from "mobx";
 import { Card, ListGroup, Button, ToggleButton } from "react-bootstrap";
 import { observer } from "mobx-react";
-import './_CardEmployee.scss';
+import "./_CardEmployee.scss";
+import { Link } from "react-router-dom";
 
 type TProps = {
   data: undefined | IOneProfile[];
-  dataFromFetch: IOneProfile[]
+  dataFromFetch: IOneProfile[];
 };
 
 let person: IOneProfile;
@@ -17,25 +18,39 @@ const CardEmployee = observer((props: TProps) => {
   const { data, dataFromFetch } = props;
   const { id } = useParams();
 
-  const [ person, setPerson ] = useState<IOneProfile>();
+  const [person, setPerson] = useState<IOneProfile>();
 
-
-   const idEm = Number(id);
+  const idEm = Number(id);
   const fiiiii = employeesOption.findEmployee(idEm);
   const fii = toJS(fiiiii);
 
   useEffect(() => {
-    const findPerson = employeesOption.employeesNewData.find((el) => el.id.value === id);
+    const findPerson = employeesOption.sliceData.find(
+      (el) => el.id.value === id
+    );
 
     setPerson(findPerson);
-  }, []);
+  }, [person?.vocation]);
 
+  const setStatusVocation = (email: string) => {
+    employeesOption.vocationFromFetch(email);
+    console.log(toJS(employeesOption.sliceData));
+    
+  };
 
   return (
     <div>
       {fii && (
-        <Card style={{ width: "18rem", marginLeft: "25px", marginTop: "30px", marginBottom:"30px" }}>
+        <Card
+          style={{
+            width: "18rem",
+            marginLeft: "25px",
+            marginTop: "30px",
+            marginBottom: "30px",
+          }}
+        >
           <Card.Body>
+            
             <Card.Title>{fii.name}</Card.Title>
             <Card.Text>
               {fii.name} works in Department {fii.department.main}{" "}
@@ -75,41 +90,65 @@ const CardEmployee = observer((props: TProps) => {
 
       {person && (
         <>
-          <Card style={{ width: "22rem", marginLeft: "25px", marginTop: "30px", marginBottom:"30px" }}>
+          <Card
+            style={{
+              width: "22rem",
+              marginLeft: "25px",
+              marginTop: "30px",
+              marginBottom: "30px",
+            }}
+          >
             <Card.Img variant="top" src={person.picture.large} />
             <Card.Body style={{ backgroundColor: "#b8e5ab" }}>
               <Card.Title>
                 {person.name.first} {person.name.last}
+                {person.vocation ? "in holidays": null}
               </Card.Title>
             </Card.Body>
             <ListGroup className="list-group-flush">
-              <ListGroup.Item><span className="description-about">Phone:</span> {person.cell}</ListGroup.Item>
-              <ListGroup.Item><span className="description-about">Mail:</span> {person.email}</ListGroup.Item>
               <ListGroup.Item>
-                <span className="description-about">{person.gender === "female" ? "She" : "He"}
-                {" works since "}</span> {person.registered.date.slice(0, 4)}
-              </ListGroup.Item>
-              <ListGroup.Item><span className="description-about">Lives in</span> {`${person.location.country}${', city: '} ${person.location.city}`}
+                <span className="description-about">Phone:</span> {person.cell}
               </ListGroup.Item>
               <ListGroup.Item>
-                <span className="description-about">Vocation status:</span> {person.location && "works" }
+                <span className="description-about">Mail:</span> {person.email}
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <span className="description-about">
+                  {person.gender === "female" ? "She" : "He"}
+                  {" works since "}
+                </span>{" "}
+                {person.registered.date.slice(0, 4)}
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <span className="description-about">Lives in</span>{" "}
+                {`${person.location.country}${", city: "} ${
+                  person.location.city
+                }`}
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <span className="description-about">Status:</span>{" "}
+                {person.location && "works"}
               </ListGroup.Item>
             </ListGroup>
-            {/* <ToggleButton
-              className="mb-2"
-              id="toggle-check"
-              type="checkbox"
-              variant="outline-primary"
-              checked={fii.vocation}
-              value="1"
-              onChange={() => employeesOption.vocationEmployee(fii.id)}
-            >
-              In vocation
-            </ToggleButton>  */}
-
-     
+            <div>
+              <span className="span-checked">Checked if has vocation</span>
+              <br />
+            <label className="switch">
+              <input type="checkbox" />
+              <span
+                className="slider round"
+                onClick={() => setStatusVocation(person.email)}
+              ></span>
+            </label>
+</div>
             <Card.Body>
-              <Card.Link style={{ fontWeight: "400", fontSize: "16px" }} href="/employees">back</Card.Link>
+              <Link
+                style={{ fontWeight: "400", fontSize: "16px" }}
+                to="/employees"
+              >
+                back
+              </Link>
+
             </Card.Body>
           </Card>
         </>
