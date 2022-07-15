@@ -3,6 +3,7 @@ import employeesOption, { IOneProfile } from "../../store/employeesOption";
 import React, { useEffect } from "react";
 import { toJS } from "mobx";
 import "./_Pagination.scss";
+import { observer } from "mobx-react-lite";
 
 type TProps = {
   personsPerPage: number;
@@ -10,7 +11,7 @@ type TProps = {
   paginate: (pageNumber: number) => void;
 };
 
-const Pagination = (props: TProps) => {
+const Pagination = observer((props: TProps) => {
   const { personsPerPage, totalPersons, paginate } = props;
   const pageNumbers: [] = [];
 
@@ -38,6 +39,6 @@ const Pagination = (props: TProps) => {
         ))}
       </div>
   );
-};
+});
 
 export default Pagination;

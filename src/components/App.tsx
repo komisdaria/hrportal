@@ -10,6 +10,7 @@ import { Layout } from "./Layout/Layout";
 import { CardEmployee } from "./CardEmployee/CardEmployee";
 import employeesOption, { IOneProfile } from "../store/employeesOption";
 import { toJS } from "mobx";
+import Search from "./Search/Search";
 
 type DataFetch = {
   dataFromFetch: IOneProfile;
@@ -87,8 +88,7 @@ const paginate = (pageNumber: number) => {
                 // @ts-ignore
               paginate={paginate}
                 // @ts-ignore
-              currentPerson={currentPerson}
-             />}
+              currentPerson={currentPerson} />}
           />
           <Route
             path="employees/:id"
@@ -96,6 +96,7 @@ const paginate = (pageNumber: number) => {
              data={data} 
              />}
           />
+              <Route path="search" element={<Search />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

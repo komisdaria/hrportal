@@ -27,16 +27,12 @@ export function Layout() {
     <NavLink
     className={({isActive}) => isActive ? cn('active-link'): ''}
      to='/employees'>All employees</NavLink>
+
+    <NavLink
+    className={({isActive}) => isActive ? cn('active-link'): ''}
+     to='/search'>Search</NavLink>
     
-      <Form className="d-flex">
-        <FormControl
-          type="search"
-          placeholder="Name employee"
-          className="me-2"
-          aria-label="Search"
-        />
-        <Button variant="outline-success">Search</Button>
-      </Form>
+
   
     </header>
     </div>
